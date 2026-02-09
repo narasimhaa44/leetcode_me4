@@ -14,11 +14,12 @@
  * }
  */
 class Solution {
+    int k=0;
     public List<TreeNode> generateTrees(int n) {
         if(n==0) return new ArrayList<>();
-        int k=0;
-            System.out.println(k);
-        return build(1,n,k);
+        List<TreeNode> res=build(1,n,k);
+        System.out.println(k);
+        return res;
     }
     public List<TreeNode> build(int start,int end,int k){
         List<TreeNode> res=new ArrayList<>();
