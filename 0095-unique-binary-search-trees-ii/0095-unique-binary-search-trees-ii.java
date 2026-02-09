@@ -27,8 +27,8 @@ class Solution {
             return res;
         }
         for(int i=start;i<=end;i++){
-            List<TreeNode> leftTrees=build(start,i-1);
-            List<TreeNode> rightTrees=build(i+1,end);
+            List<TreeNode> leftTrees=build(start,i-1,k);
+            List<TreeNode> rightTrees=build(i+1,end,k);
 
             for(TreeNode left:leftTrees){
                 for(TreeNode right:rightTrees){
