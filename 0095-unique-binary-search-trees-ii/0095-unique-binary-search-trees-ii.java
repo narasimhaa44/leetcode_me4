@@ -16,9 +16,11 @@
 class Solution {
     public List<TreeNode> generateTrees(int n) {
         if(n==0) return new ArrayList<>();
-        return build(1,n);
+        int k=0;
+            System.out.println(k);
+        return build(1,n,k);
     }
-    public List<TreeNode> build(int start,int end){
+    public List<TreeNode> build(int start,int end,int k){
         List<TreeNode> res=new ArrayList<>();
         if(start>end){
             res.add(null);
@@ -36,6 +38,7 @@ class Solution {
                     res.add(root);
                 }
             }
+            k++;
         }
         return res;
     }
