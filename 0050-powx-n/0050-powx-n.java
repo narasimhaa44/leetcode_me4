@@ -1,24 +1,22 @@
 class Solution {
     public double myPow(double x, int n) {
-        double res=Math.abs(n);
-        double ans;
-        if(n >0){
-            while(n>0){
-                res=x**res;
-                n--;
+
+        long N = n;  // handle overflow
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+
+        double result = 1;
+
+        while (N > 0) {
+            if (N % 2 == 1) {
+                result *= x;
             }
-            ans=res;
+            x *= x;
+            N /= 2;
         }
-        else if(n<0){
-            while(Math.abs(n)>0){
-                res=x**res;
-                n++;
-            }
-            ans=(double)(1/res);
-        }
-        else{
-            ans=(double)1;
-        }
-        return ans;
+
+        return result;
     }
 }
