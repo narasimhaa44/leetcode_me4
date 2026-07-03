@@ -21,28 +21,49 @@ class Node {
 };
 */
 
+// class Solution {
+//     public Node connect(Node root) {
+//         if(root==null) return null;
+//         Queue<Node> q=new LinkedList<>();
+//         q.add(root);
+//         while(!q.isEmpty()){
+//             int l=q.size();
+//             for(int i=0;i<l;i++){
+//                 Node p=q.poll();
+//                 if(i!=l-1){
+//                         p.next=q.peek();
+//                 }
+//                 else {
+//                     p.next=null;
+//                 }
+//                 if(p.left!=null){
+//                         q.add(p.left);
+//                 }
+//                 if(p.right!=null){
+//                     q.add(p.right);
+//                 }
+//             }
+//         }
+//         return root;
+//     }
+// }
+
 class Solution {
     public Node connect(Node root) {
-        if(root==null) return null;
-        Queue<Node> q=new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()){
-            int l=q.size();
-            for(int i=0;i<l;i++){
-                Node p=q.poll();
-                if(i!=l-1){
-                        p.next=q.peek();
+        if(root==null){
+            return null;
+        }
+        Node leftmost=root;
+        while(leftmost.left!=null){
+            Node current=leftmost;
+            while(current!=null){
+                current.left.next=current.right;
+                if(current.next!=null){
+                    current.right.next=current.next.left;
                 }
-                else {
-                    p.next=null;
-                }
-                if(p.left!=null){
-                        q.add(p.left);
-                }
-                if(p.right!=null){
-                    q.add(p.right);
-                }
+                current=current.next;
             }
+            leftmost=leftmost.left;
         }
         return root;
     }
