@@ -49,22 +49,37 @@ class Node {
 // }
 
 class Solution {
+
     public Node connect(Node root) {
-        if(root==null){
+
+        if(root == null)
             return null;
-        }
-        Node leftmost=root;
-        while(leftmost.left!=null){
-            Node current=leftmost;
-            while(current!=null){
-                current.left.next=current.right;
-                if(current.next!=null){
-                    current.right.next=current.next.left;
+
+        Node curr = root;
+
+        while(curr != null){
+
+            Node dummy = new Node(0);
+            Node tail = dummy;
+
+            while(curr != null){
+
+                if(curr.left != null){
+                    tail.next = curr.left;
+                    tail = tail.next;
                 }
-                current=current.next;
+
+                if(curr.right != null){
+                    tail.next = curr.right;
+                    tail = tail.next;
+                }
+
+                curr = curr.next;
             }
-            leftmost=leftmost.left;
+
+            curr = dummy.next;
         }
+
         return root;
     }
 }
